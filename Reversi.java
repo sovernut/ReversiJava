@@ -42,6 +42,7 @@ class Reversi {
 
     static void placePiece(int row, int col) {
         boolean hasPlace = false;
+        conquer(row, col);
         String turn = getTurnName();
         hasPlace = board.place(turn, row, col);
         if (hasPlace)
@@ -64,5 +65,50 @@ class Reversi {
             }
         }
         System.out.println("   Black : " + blackScore + " || White : " + whiteScore);
+    }
+
+    static void conquer(int r, int c) {
+        int row = r-1;
+        int col = c-1;
+        Piece[][] boards = board.getBoard();
+        int existingPiece = 0;
+        try {
+
+            if (((row - 1) >= 0 && (col - 1) >= 0) && ((row + 1) <= 7 && (col + 1) <= 7)) {
+                /*
+                 * x x x 
+                 * - o - 
+                 * - - -
+                 */
+                if (boards[row - 1][col - 1] != null) checkNextPiece(row - 1,col - 1);
+                if (boards[row - 1][col] != null) checkNextPiece(row - 1,col);
+                if (boards[row - 1][col + 1] != null) checkNextPiece(row - 1,col + 1);
+                /*
+                 * - - - 
+                 * x o x 
+                 * - - -
+                 */
+                if (boards[row][col - 1] != null) checkNextPiece(row,col - 1);
+                if (boards[row][col + 1] != null) checkNextPiece(row,col + 1);
+                /*
+                 * - - - 
+                 * - o - 
+                 * x x x
+                 */
+                if (boards[row + 1][col - 1] != null) checkNextPiece(row + 1,col - 1);
+                if (boards[row + 1][col] != null) checkNextPiece(row + 1,col);
+                if (boards[row + 1][col + 1] != null) checkNextPiece(row + 1,col + 1);
+            }
+            System.out.println("Existing around pieces :: " + existingPiece);
+
+        } catch (Exception e) {
+            System.out.println("Error :: " + e);
+        }
+    }
+    static void checkNextPiece(int r, int c){
+        int row = r-1;
+        int col = c-1;
+        Piece[][] boards = board.getBoard();
+        System.out.println(" block name :: "+boards[row][col]);
     }
 }
