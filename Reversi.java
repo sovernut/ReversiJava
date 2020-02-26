@@ -5,9 +5,11 @@ class Reversi {
     static Board board;
     static boolean gameEnd;
     static boolean isWhiteTurn;
+    static final String WHITE_NAME = "white";
+    static final String BLACK_NAME = "black";
     public static void main(String args[]){
         System.out.println(" ::: Welcome To Reversi Game ::: ");
-        board = new Board("Reversi",8,"black","white");
+        board = new Board("Reversi",8,BLACK_NAME,WHITE_NAME);
         Scanner in = new Scanner(System.in);
         while (!gameEnd){
             String s = in.nextLine();
@@ -22,11 +24,9 @@ class Reversi {
     }
 
     static void placePiece(int row, int col){
-        if(isWhiteTurn){
-            board.place("white", row, col);
-        } else {
-            board.place("black", row, col);
-        }
-        isWhiteTurn = !isWhiteTurn;
+        boolean hasPlace = false;
+        String turn =  isWhiteTurn ? WHITE_NAME : BLACK_NAME;
+        hasPlace = board.place(turn, row, col);
+        if (hasPlace) isWhiteTurn = !isWhiteTurn;
     }
 }

@@ -23,12 +23,14 @@ class Board {
         }
     }
 
-    void place(String pieceName, int row, int col){
+    boolean place(String pieceName, int row, int col){
         row -= 1;
         col -= 1;
         if(!isCellPlaced(row,col) && isInBoard(row,col)){
             board[row][col] = aPiece.getName() == pieceName? aPiece : bPiece;
+            return true;
         }
+        return false;
     }
 
     boolean isInBoard(int row, int col){
