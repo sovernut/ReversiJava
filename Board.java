@@ -28,6 +28,6 @@ class Board {
     }
 
     boolean isCellPlaced(int row, int col){
-        return board[row][col] == null;
+        return board[row][col] != null;
     }
 }
