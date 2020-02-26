@@ -8,10 +8,10 @@ class Reversi {
     static final String BLACK_NAME = "black";
     static int blackScore;
     static int whiteScore;
-
+    static final int BOARD_SIZE = 8;
     public static void main(String args[]) {
         System.out.println(" ::: Welcome To Reversi Game ::: ");
-        board = new Board("Reversi", 8, BLACK_NAME, WHITE_NAME);
+        board = new Board("Reversi", BOARD_SIZE, BLACK_NAME,WHITE_NAME);
         Scanner in = new Scanner(System.in);
 
         try {
@@ -25,6 +25,7 @@ class Reversi {
                 placePiece(row, col);
                 if (row == 99)
                     gameEnd = true;
+                board.setMarker(generateMarkerForTurn(getTurnName())); 
                 board.show();
                 countScore();
             }
@@ -64,5 +65,18 @@ class Reversi {
             }
         }
         System.out.println("   Black : " + blackScore + " || White : " + whiteScore);
+    }
+
+    static String[][] generateMarkerForTurn(String turn){
+        String[][] marker = new String[BOARD_SIZE][BOARD_SIZE];
+        Piece[][] c_board = board.getBoard();
+        for(int i = 0;i < BOARD_SIZE; i++){
+            for(int k = 0; k < BOARD_SIZE;k++){
+                if (c_board[i][k] == null){
+                    marker[i][k] = "o";
+                }
+            }
+        }
+        return marker;
     }
 }

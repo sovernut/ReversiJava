@@ -1,6 +1,7 @@
 class Board {
     String boardName; 
     Piece[][] board;
+    String[][] marker;
     int size;
     Piece aPiece;
     Piece bPiece;
@@ -21,6 +22,7 @@ class Board {
             System.out.print(" "+(i+1)+" ");
             for (int k = 0;k< board[i].length;k++){
                 if (board[i][k] != null) System.out.print(" "+board[i][k].getSymbol()+" ");
+                else if (marker[i][k] != null) System.out.print(" "+marker[i][k]+" ");
                 else System.out.print(" - ");
             }
             System.out.println();
@@ -37,9 +39,14 @@ class Board {
         return false;
     }
 
+    void setMarker(String[][] marker){
+        this.marker = marker;
+    }
+
     boolean isInBoard(int row, int col){
         return row >= 0 && row < size && col >= 0 && col < size;
     }
+    
     boolean isCellPlaced(int row, int col){
         return board[row][col] != null;
     }
