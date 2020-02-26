@@ -43,4 +43,7 @@ class Board {
     boolean isCellPlaced(int row, int col){
         return board[row][col] != null;
     }
+    Piece[][] getBoard(){
+        return this.board;
+    }
 }

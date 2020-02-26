@@ -29,3 +29,4 @@ function compile_reversi {
 fi
 echo "=== Complied! ==="
 java Reversi
+#command => "sh compile.sh all"
