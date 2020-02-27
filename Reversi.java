@@ -4,14 +4,11 @@ class Reversi {
     static Board board;
     static boolean gameEnd;
     static boolean isWhiteTurn;
-    static final String WHITE_NAME = "white";
-    static final String BLACK_NAME = "black";
     static int blackScore;
     static int whiteScore;
-
     public static void main(String args[]) {
         System.out.println(" ::: Welcome To Reversi Game ::: ");
-        board = new Board("Reversi", 8, BLACK_NAME, WHITE_NAME);
+        board = new Board("Reversi", Constant.BOARD_SIZE, Constant.WHITE_NAME,Constant.BLACK_NAME);
         Scanner in = new Scanner(System.in);
 
         try {
@@ -25,6 +22,7 @@ class Reversi {
                 placePiece(row, col);
                 if (row == 99)
                     gameEnd = true;
+                board.setMarker(generateMarkerForTurn(getTurnName())); 
                 board.show();
                 countScore();
             }
@@ -37,7 +35,7 @@ class Reversi {
     }
 
     static String getTurnName() {
-        return isWhiteTurn ? WHITE_NAME : BLACK_NAME;
+        return isWhiteTurn ? Constant.WHITE_NAME : Constant.BLACK_NAME;
     }
 
     static void placePiece(int row, int col) {
@@ -105,10 +103,24 @@ class Reversi {
             System.out.println("Error :: " + e);
         }
     }
+    
     static void checkNextPiece(int r, int c){
         int row = r-1;
         int col = c-1;
         Piece[][] boards = board.getBoard();
         System.out.println(" block name :: "+boards[row][col]);
+    }
+
+    static String[][] generateMarkerForTurn(String turn){
+        String[][] marker = new String[Constant.BOARD_SIZE][Constant.BOARD_SIZE];
+        Piece[][] c_board = board.getBoard();
+        for(int i = 0;i < Constant.BOARD_SIZE; i++){
+            for(int k = 0; k < Constant.BOARD_SIZE;k++){
+                if (c_board[i][k] == null){
+                    marker[i][k] = "o";
+                }
+            }
+        }
+        return marker;
     }
 }
