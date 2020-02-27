@@ -33,6 +33,8 @@ function compile_reversi {
         compile_all
     elif [ "$1" == "board" ]; then
         compile_board
+    elif [ "$1" == "reversi" ]; then
+        compile_reversi
 fi
 echo "=== Complied! ==="
 java Reversi

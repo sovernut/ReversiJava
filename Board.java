@@ -9,6 +9,7 @@ class Board {
         this.boardName = name;
         this.size = size;
         this.board = new Piece[size][size];
+        this.marker = new String[size][size];
         this.aPiece = new Piece(aName);
         this.bPiece = new Piece(bName);
         System.out.println(boardName + "( Size: " + size + " ) Board Initialized.");
@@ -43,11 +44,11 @@ class Board {
         this.marker = marker;
     }
 
-    boolean isInBoard(int row, int col){
+    public boolean isInBoard(int row, int col){
         return row >= 0 && row < size && col >= 0 && col < size;
     }
     
-    boolean isCellPlaced(int row, int col){
+    public boolean isCellPlaced(int row, int col){
         return board[row][col] != null;
     }
     Piece[][] getBoard(){
