@@ -1,25 +1,32 @@
 function compile_all {
+    compile_constant
     compile_board
     compile_piece
     compile_reversi
 }
 
+function compile_constant {
+    echo "Compling Constant"
+    javac Constant.java
+    echo "Compling Board Completed."
+}
+
 function compile_board {
-    echo "Compliing Board..."
+    echo "Compling Board..."
     javac Board.java
-    echo "Compliing Board Completed."
+    echo "Compling Board Completed."
 }
 
 function compile_piece {
-    echo "Compliing Piece..."
+    echo "Compling Piece..."
     javac Piece.java
-    echo "Compliing Piece Completed."
+    echo "Compling Piece Completed."
 }
 
 function compile_reversi {
-    echo "Compliing Reversi..."
+    echo "Compling Reversi..."
     javac Reversi.java
-    echo "Compliing Reversi Completed."
+    echo "Compling Reversi Completed."
 }
 
  if [ "$1" == "all" ]; then
