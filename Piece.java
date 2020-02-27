@@ -13,4 +13,8 @@ class Piece {
     public char getSymbol(){
         return this.pieceSymbol;
     }
+    public void setNameAndSymbol(String name){
+        this.pieceName = name;
+        this.pieceSymbol = pieceName.charAt(0);
+    }
 }

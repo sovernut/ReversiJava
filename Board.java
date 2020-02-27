@@ -33,7 +33,7 @@ class Board {
         row -= 1;
         col -= 1;
         if(!isCellPlaced(row,col) && isInBoard(row,col)){
-            board[row][col] = aPiece.getName() == pieceName? aPiece : bPiece;
+            board[row][col] = aPiece.getName() == pieceName? new Piece(aPiece.getName()) : new Piece(bPiece.getName());
             return true;
         }
         return false;
