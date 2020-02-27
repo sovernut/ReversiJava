@@ -15,6 +15,8 @@ class Reversi {
         board.place(Constant.BLACK_NAME, 5, 5);
         board.place(Constant.WHITE_NAME, 4, 5);
         board.place(Constant.WHITE_NAME, 5, 4);
+        board.setMarker(generateMarkerForTurn(getTurnName())); 
+        board.show();
         try {
             while (!gameEnd) {
                 System.out.print(getTurnName() + " >> ");
@@ -81,33 +83,39 @@ class Reversi {
         Piece[][] boards = board.getBoard();
         try {
 
-            if (((row - 1) >= 0 && (col - 1) >= 0) && ((row + 1) <= 7 && (col + 1) <= 7)) {
+            //if (((row - 1) >= 0 && (col - 1) >= 0) && ((row + 1) <= 7 && (col + 1) <= 7)) {
                 /*
-                 * x x x - o - - - -
+                 * x x x 
+                 * - o - 
+                 * - - -
                  */
-                if (boards[row - 1][col - 1] != null)
+                if ((row>0 && col>0)&&boards[row - 1][col - 1] != null)
                     checkNextPiece(row, col, Constant.UPPER_LEFT);
-                if (boards[row - 1][col] != null)
+                if ((row>0)&&boards[row - 1][col] != null)
                     checkNextPiece(row, col, Constant.UPPER_MID);
-                if (boards[row - 1][col + 1] != null)
+                if ((row>0 && col<7)&&boards[row - 1][col + 1] != null)
                     checkNextPiece(row, col, Constant.UPPER_RIGHT);
                 /*
-                 * - - - x o x - - -
+                 * - - - 
+                 * x o x 
+                 * - - -
                  */
-                if (boards[row][col - 1] != null)
+                if ((col>0)&&boards[row][col - 1] != null)
                     checkNextPiece(row, col, Constant.MIDDLE_LEFT);
-                if (boards[row][col + 1] != null)
+                if ((col<7)&&boards[row][col + 1] != null)
                     checkNextPiece(row, col, Constant.MIDDLE_RIGHT);
                 /*
-                 * - - - - o - x x x
+                 * - - - 
+                 * - o - 
+                 * x x x
                  */
-                if (boards[row + 1][col - 1] != null)
+                if ((row<7&&col>0)&&boards[row + 1][col - 1] != null)
                     checkNextPiece(row, col, Constant.LOWER_LEFT);
-                if (boards[row + 1][col] != null)
+                if ((row<7)&&boards[row + 1][col] != null)
                     checkNextPiece(row, col, Constant.LOWER_MID);
-                if (boards[row + 1][col + 1] != null)
+                if ((row<7&&col<7)&&boards[row + 1][col + 1] != null)
                     checkNextPiece(row, col, Constant.LOWER_RIGHT);
-            }
+           // }
             // System.out.println("Existing around pieces :: " + existingPiece);
 
         } catch (Exception e) {
@@ -121,7 +129,7 @@ class Reversi {
             case Constant.UPPER_LEFT:
                 System.out.println(Constant.UPPER_LEFT);
                 if (isSameColor(boards[row - 1][col - 1])) {
-
+                    break;
                 } else {
                     System.out.println(" UPPER_LEFT CAN EAT !!");
                 }
@@ -129,7 +137,7 @@ class Reversi {
             case Constant.UPPER_MID:
                 System.out.println(Constant.UPPER_MID);
                 if (isSameColor(boards[row - 1][col])) {
-
+                    break;
                 } else {
                     System.out.println("UPPER_MID CAN EAT !!");
                     int count = 0;
@@ -145,7 +153,6 @@ class Reversi {
                     }
                     break;
                 }
-                break;
             case Constant.UPPER_RIGHT:
                 System.out.println(Constant.UPPER_RIGHT);
                 if (isSameColor(boards[row - 1][col + 1])) {
@@ -227,7 +234,7 @@ class Reversi {
             case Constant.LOWER_RIGHT:
                 System.out.println(Constant.LOWER_RIGHT);
                 if (isSameColor(boards[row + 1][col + 1])) {
-
+                    break;
                 } else {
                     System.out.println("LOWER_RIGHT CAN EAT !!");
                 }
@@ -237,8 +244,8 @@ class Reversi {
         }
     }
 
-    static boolean isSameColor(Piece broad) {
-        return (broad.getName() == getTurnName());
+    static boolean isSameColor(Piece board) {
+        return (board.getName() == getTurnName());
     }
 
     static String[][] generateMarkerForTurn(String turn) {
