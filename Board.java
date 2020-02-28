@@ -22,9 +22,9 @@ class Board {
         for (int i = 0;i< board.length;i++){
             System.out.print(" "+(i+1)+" ");
             for (int k = 0;k< board[i].length;k++){
-                if (board[i][k] != null) System.out.print(" "+board[i][k].getSymbol()+" ");
+                if (board[i][k] != null) System.out.print(" "+board[i][k].getSymbolImage()+" ");
                 else if (marker[i][k] != null) System.out.print(" "+marker[i][k]+" ");
-                else System.out.print(" - ");
+                else System.out.print("   ");
             }
             System.out.println();
         }

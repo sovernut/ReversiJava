@@ -17,4 +17,7 @@ class Piece {
         this.pieceName = name;
         this.pieceSymbol = pieceName.charAt(0);
     }
+    public String getSymbolImage(){
+        return this.pieceName.equals("black")? "⚫":"⚪";
+    }
 }

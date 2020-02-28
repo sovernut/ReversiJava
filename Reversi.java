@@ -272,7 +272,7 @@ class Reversi {
             // System.out.println("isINBOARD "+isInBoard);
             // System.out.println("isAllyPieceOpposite "+isAllyPieceOpposite);
             if (isInBoard && isAllyPieceOpposite && !board.isCellPlaced(x[i] + x_p, y[i] + y_p)) {
-                marker[x[i] + x_p][y[i] + y_p] = "o";
+                marker[x[i] + x_p][y[i] + y_p] = "◦";
             }
         }
     }
