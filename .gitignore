@@ -1,4 +1,1 @@
-Reversi.class
-Board.class
-Piece.class
-Constant.class
+*.class
